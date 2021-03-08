@@ -30,7 +30,7 @@ export const BrowseMachine = Machine<{
             },
             search: {
                 actions: assign({
-                    search_string: (context, event) => event.search_string
+                    dataset_id: (context, event) => event.dataset_id
                 }),
                 target: "search"
             },
@@ -38,16 +38,16 @@ export const BrowseMachine = Machine<{
                 actions: assign({
                     dataset_id: (context, event) => event.dataset_id
                 }),
-              target: "metadata"
+                target: "metadata"
             },
             "*": "fourOhFour"
         },
         states: {
             home: {
-              on: {
-                  search: "search",
-                  metadata: "metadata"
-              }
+                on: {
+                    search: "search",
+                    metadata: "metadata"
+                }
             },
             metadata: {
                 on: {

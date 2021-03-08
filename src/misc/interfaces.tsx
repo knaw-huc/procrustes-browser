@@ -28,13 +28,15 @@ export interface IMetadataLicense {
 }
 
 export interface IBrowseResult {
+    total_hits: number
     page: number,
     total_pages: number,
-    result: IBrowseItem[]
+    items: IBrowseItem[],
 }
 
 export interface IBrowseItem {
-    item: string
+    head: string,
+    body: string[],
 }
 
 export interface IDetailValuePairs {

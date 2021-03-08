@@ -5,6 +5,7 @@ import {StateMachineComponent} from "./renderMachine";
 import {BrowseMachine} from "./machine/model";
 import Home from "./components/home";
 import Metadata from "./components/metadata";
+import Search from "./components/search";
 import './assets/css/procrustus.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -17,14 +18,10 @@ function gotoUrl() {
         interpreter.send("fourOhFour"); //Filthy solution for forcing props reload!!!
         interpreter.send("detail", {manuscript_id: id});
     } else {
-        if (window.location.hash.substr(1).indexOf("search") === 0) {
-            if (window.location.hash.substr(1).length > 6 && window.location.hash.substr(1).indexOf("search") !== -1) {
+        if (window.location.hash.substr(1).indexOf("search/") === 0) {
                 const id = window.location.hash.substr(window.location.hash.indexOf("/") + 1);
-                interpreter.send("search", {search_string: id});
-            } else {
-                const id = "none";
-                interpreter.send("search", {search_string: id});
-            }
+                interpreter.send("fourOhFour"); //Filthy solution for forcing props reload!!!
+                interpreter.send("search", {dataset_id: id});
         } else {
             if (window.location.hash.substr(1).indexOf("metadata/") === 0) {
                 const id = window.location.hash.substr(window.location.hash.indexOf("/") + 1);
@@ -46,6 +43,7 @@ ReactDOM.render(
         {StateMachineComponent(interpreter, {
             "home": ({state}) => <Home/>,
             "metadata": ({state}) => <Metadata datasetID={(state.context || {}).dataset_id}/>,
+            "search": ({state}) => <Search datasetID={(state.context || {}).dataset_id}/>,
             "fourOhFour": ({state}) => <div>404</div>,
             "": ({state}) => <div>The GUI for {state.value} is not yet defined</div>
         })}</div>
