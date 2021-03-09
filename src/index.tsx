@@ -6,6 +6,7 @@ import {BrowseMachine} from "./machine/model";
 import Home from "./components/home";
 import Metadata from "./components/metadata";
 import Search from "./components/search";
+import Detail from "./components/detail";
 import './assets/css/procrustus.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -16,7 +17,7 @@ function gotoUrl() {
     if (window.location.hash.substr(1).indexOf("detail/") === 0) {
         const id = window.location.hash.substr(window.location.hash.indexOf("/") + 1);
         interpreter.send("fourOhFour"); //Filthy solution for forcing props reload!!!
-        interpreter.send("detail", {manuscript_id: id});
+        interpreter.send("detail", {collection_item_id: id});
     } else {
         if (window.location.hash.substr(1).indexOf("search/") === 0) {
                 const id = window.location.hash.substr(window.location.hash.indexOf("/") + 1);
@@ -44,6 +45,7 @@ ReactDOM.render(
             "home": ({state}) => <Home/>,
             "metadata": ({state}) => <Metadata datasetID={(state.context || {}).dataset_id}/>,
             "search": ({state}) => <Search datasetID={(state.context || {}).dataset_id}/>,
+            "detail": ({state}) => <Detail collectionItem={(state.context || {}).collection_item_id}/>,
             "fourOhFour": ({state}) => <div>404</div>,
             "": ({state}) => <div>The GUI for {state.value} is not yet defined</div>
         })}</div>

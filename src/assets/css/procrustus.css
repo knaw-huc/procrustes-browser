@@ -1380,8 +1380,6 @@ border: 1px solid #999;
 }
 
 .hcClickable {
-color: rgb(73, 85, 114);
-font-weight: bold;
 cursor: pointer;
 display: inline;
 }
@@ -1399,6 +1397,27 @@ background-color: #dddddd;
 
 .hcPageBrowser{
 margin-top: 10px;
+}
+
+.pager{
+position: relative;
+margin-top: 20px;
+border-top: 1px solid #333333;
+}
+
+.prevBtn, .nextBtn{
+position: absolute;
+size: 0.9em;
+font-weight: bold;
+cursor: pointer;
+}
+
+.prevBtn{
+left: 10px;
+}
+
+.nextBtn{
+right: 10px;
 }
 
 .leaflet-container {
@@ -1730,6 +1749,52 @@ font-size: 0.9em;
 .mdGroup{
 padding-left: 10px;
 border-left: 1px solid #999;
+}
+
+.browseData{
+display: inline-block;
+font-weight: bold;
+color: #666;
+}
+
+.browseItem{
+display: block;
+margin-top: 20px;
+}
+
+.browseHead{
+font-weight: bold;
+color: #633;
+cursor: pointer;
+}
+
+.navImage{
+display:inline-block;
+height: 24px;
+width: 24px;
+border: 1px solid #333;
+padding: 2px;
+margin-left: 8px;
+cursor: pointer;
+}
+
+.browseTools{
+display: inline-block;
+position: absolute;
+right: 10px;
+text-align: right;
+}
+
+.browseSubHeader{
+position: relative;
+}
+
+.datasetLink{
+cursor: pointer;
+}
+
+.detailRow{
+margin-bottom: 10px;
 }
 
 
