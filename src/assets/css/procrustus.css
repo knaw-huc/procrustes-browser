@@ -1114,11 +1114,7 @@ background-color: #cccccc;
 padding: .5rem;
 width: fit-content }
 
-.hcPagination {
-display: flex;
-flex-direction: row;
-justify-content: center;
-flex-wrap: wrap; }
+
 
 .hcPagination > * {
 margin: 0 .5rem; }
@@ -1400,13 +1396,13 @@ margin-top: 10px;
 }
 
 .pager{
-position: relative;
+display: table-row;
 margin-top: 20px;
 border-top: 1px solid #333333;
 }
 
 .prevBtn, .nextBtn{
-position: absolute;
+display: table-cell;
 size: 0.9em;
 font-weight: bold;
 cursor: pointer;
@@ -1795,6 +1791,21 @@ cursor: pointer;
 
 .detailRow{
 margin-bottom: 10px;
+}
+
+.hcPageSelector{
+display: table-cell;
+width: 50px;
+height: 38px;
+margin-left: 500px;
+border: 1px solid #000;
+}
+
+.hcPagination {
+display: inline-block;
+justify-content: center;
+flex-wrap: wrap;
+vertical-align: center
 }
 
 

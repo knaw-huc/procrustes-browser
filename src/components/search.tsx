@@ -15,13 +15,23 @@ function Search(props: { datasetID: string }) {
     const [refresh, setRefresh] = useState(false);
     const [extendedView, setExtendedView] = useState(false);
     const [page, setPage] = useState(1);
+    const [pages, setPages] = useState<number[]>([]);
 
     async function fetchData() {
         const url = SERVICE_SERVER + "elastic/browse/" + props.datasetID + "/" + page.toString();
         const response = await fetch(url);
         const json: IBrowseResult = await response.json();
+        setPages(createPages(json));
         setResult(json);
         setLoading(false);
+    }
+
+    function createPages(json: IBrowseResult) {
+        let arr: number[] = [];
+        for (var i:number = 1; i<= json.total_pages; i++) {
+            arr.push(i);
+        }
+        return arr;
     }
 
     function getDetail(uri: string) {
@@ -34,14 +44,20 @@ function Search(props: { datasetID: string }) {
     }
 
     function goBack() {
-        window.scroll(0,0);
+        window.scroll(0, 0);
         setPage(page - 1);
     }
 
     function goNext() {
-        window.scroll(0,0);
+        window.scroll(0, 0);
         setPage(page + 1);
     }
+
+    function goToPage(pg: number) {
+        window.scroll(0, 0);
+        setPage(pg);
+    }
+
 
     useEffect(() => {
         fetchData();
@@ -96,8 +112,27 @@ function Search(props: { datasetID: string }) {
                                 )
                             })}
                             <div className="pager">
-                                {page > 1 ? (<div className="prevBtn" onClick={() => {goBack()}}>Previous</div>) : (<div/>)}
-                                {page < result.total_pages ? (<div className="nextBtn" onClick={() => {goNext()}}>Next</div>) : (<div/>)}
+                                {!loading && result.total_pages > 1 ? (<div className="hcPagination">
+                                        {page > 1 ? (<div className="prevBtn" onClick={() => {
+                                            goBack()
+                                        }}>Previous</div>) : (<div/>)}
+                                        <select className="hcPageSelector"
+                                                onChange={(e) => goToPage(Number(e.target.value))}>
+                                            {pages.map((pg: number) => {
+                                                if (pg === result.page) {
+                                                    return (
+                                                        <option value={pg} selected>{pg}</option>)
+                                                } else {
+                                                    return (
+                                                        <option value={pg}>{pg}</option>)
+                                                }
+                                            })}
+                                        </select>
+                                        {page < result.total_pages ? (<div className="nextBtn" onClick={() => {
+                                            goNext()
+                                        }}>Next</div>) : (<div/>)}
+                                    </div>)
+                                    : (<div/>)}
                             </div>
                         </div>
                     )}
