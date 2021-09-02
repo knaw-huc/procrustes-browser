@@ -24,7 +24,10 @@ function Detail(props: { collectionItem: string }) {
         setLoading(false);
     }
 
-    console.log("rob");
+    function getDetail(uri: string, index: string) {
+        const item_id = {dataset: index, uri: uri};
+        window.location.href = HOME + "/#detail/" + Base64.toBase64(JSON.stringify(item_id));
+    }
 
     function goOut(collection: string): void {
         const data = JSON.parse(Base64.fromBase64(props.collectionItem));
@@ -32,10 +35,15 @@ function Detail(props: { collectionItem: string }) {
         //console.log(TIMBUCTOO_DATASET + data.dataset + "/" + encodeURI(uri));
     }
 
+    function openImage(url: string) {
+        window.open(url);
+    }
+
     useEffect(() => {
         fetchData();
     }, [refresh]);
 
+    console.log(result.collection);
     return (
         <div>
             <Header/>
@@ -48,26 +56,58 @@ function Detail(props: { collectionItem: string }) {
                             <h2>Details</h2>
                             <div className="browseSubHeader">
                                 <div className="browseTools">
-                                    <div className="navImage" onClick={() => {window.history.back()}}><img src={back}/></div>
+                                    <div className="navImage" onClick={() => {
+                                        window.history.back()
+                                    }}><img src={back}/></div>
                                     {extendedView ? (
-                                        <div className="navImage" onClick={() => {setExtendedView(false)}}><img src={doc}/></div>
+                                        <div className="navImage" onClick={() => {
+                                            setExtendedView(false)
+                                        }}><img src={doc}/></div>
                                     ) : (
-                                        <div className="navImage" onClick={() => {setExtendedView(true)}}><img src={wrench}/></div>
+                                        <div className="navImage" onClick={() => {
+                                            setExtendedView(true)
+                                        }}><img src={wrench}/></div>
                                     )}
                                 </div>
                             </div>
                             {extendedView ? (<div className="detailRow">
                                 <div className="mdLabel">URI</div>
-                                <div className="mdValue hcClickable" onClick={() => {goOut(result.collection)}}>{result.uri}</div>
+                                <div className="mdValue linkLine" onClick={() => {
+                                    goOut(result.collection)
+                                }}>{result.uri}</div>
                             </div>) : (<div>
                             </div>)}
                             {result.details.map((item) => {
                                 return (<div className="detailRow">
                                     <div className="mdLabel">{item.key}</div>
-                                    <div className="mdValue">{item.value}</div>
-                                </div>)
+                                    {item.value.toString().indexOf("images.diginfra.net") > -1 ? (
+                                        <div onClick={() => openImage(item.value)}
+                                             className="mdValue linkLine">{item.value}</div>) : (
+                                        <div className="mdValue">{item.value}</div>)}
 
+                                </div>)
                             })}
+                            {result.see_also.length > 0 &&
+                            <div>
+                                <div className="mdLabel">See also:</div>
+                                {result.see_also.map((member) => {
+                                    return (
+                                        <div className="alsoItem">
+                                            <div className="mdValue linkLine" onClick={() => {
+                                                getDetail(member.uri, member.index)
+                                            }}>{member.head}
+                                            </div>
+                                            {member.body.map((line) => {
+                                                return (<div className="mdValue">{line}</div>)
+                                            })}
+                                        </div>
+                                    )
+                                })}
+                            </div>}
+                            {result.collection.toString().indexOf("delegates") > -1 &&
+                            <div className="alsoItem"><div className="mdValue linkLine">
+                                Sessions attended
+                            </div></div>}
                         </div>
                     )}
                 </div>

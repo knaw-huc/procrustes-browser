@@ -17,6 +17,7 @@ export default class Header extends React.Component {
                         <div className="hcBrandLogo" onClick={() => {this.goHome()}}>
                             <img src={logo} className="logo" alt="Logo Soundtolls"/>
                         </div>
+                        <div className="instance">for REBUBLIC</div>
                     </div>
                 </header>
             </div>

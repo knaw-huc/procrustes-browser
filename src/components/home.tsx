@@ -20,7 +20,8 @@ function Home() {
                     <div className="dsOptions">
                         <div className="dsOption" onClick={() => {
                             goToPage('search', 'u33707283d426f900d4d33707283d426f900d4d0d__delegates')
-                        }}>Browse data</div>
+                        }}>Browse data
+                        </div>
                         <div className="dsOption" onClick={() => {
                             goToPage('metadata', 'u33707283d426f900d4d33707283d426f900d4d0d__delegates')
                         }}>View metadata
@@ -31,9 +32,21 @@ function Home() {
                     <div className="dsOptions">
                         <div className="dsOption" onClick={() => {
                             goToPage('search', 'u33707283d426f900d4d33707283d426f900d4d0d__abbreviated_delegates')
-                        }}>Browse data</div>
+                        }}>Browse data
+                        </div>
                         <div className="dsOption" onClick={() => {
                             goToPage('metadata', 'u33707283d426f900d4d33707283d426f900d4d0d__abbreviated_delegates')
+                        }}>View metadata
+                        </div>
+                    </div>
+                    <div className="resultShelfmark">Sessions</div>
+                    <div className="resultDescription">Sessions data 1728</div>
+                    <div className="dsOptions">
+                        <div className="dsOption" onClick={() => {
+                            goToPage('search', 'u33707283d426f900d4d33707283d426f900d4d0d__repsessions')
+                        }}>Browse data</div>
+                        <div className="dsOption" onClick={() => {
+                            goToPage('metadata', 'u33707283d426f900d4d33707283d426f900d4d0d__repsessions')
                         }}>View metadata
                         </div>
                     </div>

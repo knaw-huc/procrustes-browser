@@ -9,6 +9,11 @@ export interface IDataSetmetadata {
     license: IMetadataLicense
 }
 
+export interface IBrowseStruc {
+    page: number,
+    text: string;
+}
+
 export interface IStringValue {
     value: string
 }
@@ -42,6 +47,13 @@ export interface IBrowseItem {
     uri: string;
 }
 
+export interface IDetailBrowseItem {
+    head: string,
+    body: string[],
+    uri: string,
+    index: string
+}
+
 export interface IDetailValuePair {
     key: string,
     value: string
@@ -50,6 +62,7 @@ export interface IDetailValuePair {
 export interface IDetails {
     uri: string,
     collection: string,
+    see_also: IDetailBrowseItem[],
     details: IDetailValuePair[]
 }
 

@@ -1396,7 +1396,8 @@ margin-top: 10px;
 }
 
 .pager{
-display: table-row;
+width: 100%;
+display: table;
 margin-top: 20px;
 border-top: 1px solid #333333;
 }
@@ -1406,14 +1407,17 @@ display: table-cell;
 size: 0.9em;
 font-weight: bold;
 cursor: pointer;
+width: 100px;
 }
 
 .prevBtn{
 left: 10px;
+text-align: left;
 }
 
 .nextBtn{
 right: 10px;
+text-align: right;
 }
 
 .leaflet-container {
@@ -1613,9 +1617,9 @@ margin-right: 8px;
 }
 
 .linkLine {
-color: rgb(73, 85, 144);
 text-decoration: underline;
 cursor: pointer;
+font-weight: bold;
 }
 
 .cursLine {
@@ -1680,10 +1684,11 @@ border: 1px solid #000000;
 }
 
 .ftSearchBtn {
+display: inline-block;
 margin-top: 4px;
 padding: 4px;
 color: #ffffff;
-background-color: #1c5a91;
+background-color: #633;
 }
 
 .hcPageNumber {
@@ -1721,6 +1726,7 @@ background-color: #ccc;
 
 .hcBrandLogo{
 cursor: pointer;
+width: 260px;
 }
 
 .dsOption{
@@ -1794,18 +1800,57 @@ margin-bottom: 10px;
 }
 
 .hcPageSelector{
-display: table-cell;
+display: inline-block;
+margin-top: 4px;
 width: 50px;
 height: 38px;
-margin-left: 500px;
-border: 1px solid #000;
+}
+
+.ddCell{
+display: table-cell;
+text-align: center;
 }
 
 .hcPagination {
-display: inline-block;
+display: table-row;
 justify-content: center;
 flex-wrap: wrap;
 vertical-align: center
+}
+
+.hcFacetFilter input {
+display: inline-block !important;
+border: 1px solid #333 !important;
+}
+
+.search {
+margin-bottom: 10px;
+}
+
+.instance {
+display: inline-block;
+font-weight: bold;
+color: #633;
+margin-top: 10px;
+}
+
+.alsoLabel{
+font-weight: bold;
+}
+
+.browserArea {
+display: block;
+min-height: 400px;
+}
+
+.noResults{
+font-weight: bold;
+padding: 50px 0;
+}
+
+.alsoItem {
+display: block;
+margin-bottom: 16px;
 }
 
 
